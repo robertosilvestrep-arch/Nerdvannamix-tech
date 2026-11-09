@@ -3,190 +3,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nerdvanna Mix & Tech | TI, Hardware & Universo Geek</title>
+    <title>Nerdvanna Mix & Tech | Soluções em TI, Sites, Automação & Geek</title>
     <style>
+        /* Reset e Variáveis de Cores (Preto, Dourado e Branco) */
+        :root {
+            --bg-black: #080808;
+            --bg-card: #121212;
+            --bg-alt: #0d0d0d;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-hover: #b5952f;
+            --white: #ffffff;
+            --gray-light: #d1d5db;
+            --gray-muted: #9ca3af;
+            --border-dark: #262626;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         html { scroll-behavior: smooth; }
-        body { background-color: #0b0f19; color: #e2e8f0; line-height: 1.6; }
+        body { background-color: var(--bg-black); color: var(--white); line-height: 1.6; }
         a { text-decoration: none; color: inherit; }
-        
-        /* Utilitários e Cores */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        .gradient-text { background: linear-gradient(90deg, #06b6d4, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .badge { display: inline-block; background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); font-size: 12px; font-weight: bold; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; }
-        
-        /* Topo / Navbar */
-        header { position: sticky; top: 0; z-index: 50; background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid #1e293b; padding: 15px 0; }
-        .nav-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .logo { font-size: 20px; font-weight: 800; letter-spacing: 1px; }
-        .btn-whats-top { background: #10b981; color: #022c22; font-weight: bold; padding: 8px 16px; border-radius: 8px; font-size: 14px; transition: 0.2s; }
-        .btn-whats-top:hover { background: #34d399; }
+        ul { list-style: none; }
 
-        /* Hero */
-        .hero { text-align: center; padding: 60px 20px; background: linear-gradient(180deg, #0f172a 0%, #0b0f19 100%); border-bottom: 1px solid #1e293b; }
-        .hero h1 { font-size: 36px; font-weight: 800; margin: 20px 0 15px; line-height: 1.2; }
-        .hero p { color: #94a3b8; font-size: 17px; max-width: 650px; margin: 0 auto 30px; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+        .gold-text { color: var(--gold); }
+        .badge { display: inline-block; background: rgba(212, 175, 55, 0.12); color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.4); font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Cabeçalho e Menu Hambúrguer */
+        header { position: sticky; top: 0; z-index: 100; background: rgba(8, 8, 8, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border-dark); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; height: 75px; }
+        
+        .brand { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 800; letter-spacing: 1px; color: var(--white); }
+        .brand img { height: 48px; width: auto; object-fit: contain; }
+
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-links a { font-size: 15px; font-weight: 500; color: var(--gray-light); transition: 0.2s; }
+        .nav-links a:hover { color: var(--gold); }
+        .btn-nav { background: var(--gold); color: var(--bg-black) !important; font-weight: 700 !important; padding: 9px 18px; border-radius: 6px; }
+        .btn-nav:hover { background: var(--gold-light); }
+
+        /* Botão Hambúrguer (Mobile) */
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; background: none; border: none; padding: 5px; }
+        .hamburger span { width: 26px; height: 3px; background-color: var(--gold); border-radius: 2px; transition: 0.3s; }
+
+        /* Hero Section */
+        .hero { padding: 80px 0; text-align: center; background: radial-gradient(circle at center top, #1f1a0d 0%, var(--bg-black) 70%); border-bottom: 1px solid var(--border-dark); }
+        .hero h1 { font-size: 40px; font-weight: 800; max-width: 800px; margin: 20px auto 15px; line-height: 1.2; }
+        .hero p { color: var(--gray-muted); font-size: 18px; max-width: 680px; margin: 0 auto 35px; }
         .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .btn-primary { background: #06b6d4; color: #082f49; font-weight: bold; padding: 12px 28px; border-radius: 10px; }
-        .btn-secondary { background: #1e293b; color: #fff; border: 1px solid #334155; font-weight: 600; padding: 12px 28px; border-radius: 10px; }
+        .btn-gold { background: var(--gold); color: var(--bg-black); font-weight: 800; padding: 14px 30px; border-radius: 8px; font-size: 15px; transition: 0.2s; border: 1px solid var(--gold); cursor: pointer; }
+        .btn-gold:hover { background: var(--gold-light); }
+        .btn-outline { background: transparent; color: var(--white); font-weight: 600; padding: 14px 30px; border-radius: 8px; font-size: 15px; border: 1px solid var(--gold); transition: 0.2s; }
+        .btn-outline:hover { background: rgba(212, 175, 55, 0.1); }
 
-        /* Seções e Grids */
-        section { padding: 50px 0; }
-        .section-title { text-align: center; margin-bottom: 35px; }
-        .section-title h2 { font-size: 28px; font-weight: bold; }
-        .section-title p { color: #94a3b8; font-size: 15px; margin-top: 5px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
+        /* Seções Padrão */
+        section { padding: 70px 0; }
+        .section-header { text-align: center; margin-bottom: 45px; }
+        .section-header h2 { font-size: 32px; font-weight: 800; margin-top: 8px; }
+        .section-header p { color: var(--gray-muted); max-width: 600px; margin: 8px auto 0; font-size: 15px; }
 
-        /* Cards */
-        .card { background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.2s; }
-        .card:hover { border-color: #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
-        .card-icon { font-size: 28px; margin-bottom: 12px; }
-        .card h3 { font-size: 19px; margin-bottom: 10px; color: #f8fafc; }
-        .card p { color: #94a3b8; font-size: 14px; margin-bottom: 20px; }
-        .btn-card { display: block; text-align: center; background: #1e293b; color: #e2e8f0; font-weight: bold; padding: 10px; border-radius: 8px; font-size: 14px; transition: 0.2s; }
-        .btn-card:hover { background: #06b6d4; color: #082f49; }
-        .btn-afiliado { background: #7e22ce; color: #fff; }
-        .btn-afiliado:hover { background: #9333ea; color: #fff; }
+        /* Grid de Serviços e Produtos */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
 
-        /* Banner Colecionáveis */
-        .banner-geek { background: linear-gradient(90deg, #0f172a, #2e1065, #0f172a); border: 1px solid #4c1d95; border-radius: 16px; padding: 30px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
-        
-        /* Rodapé e Botão Flutuante */
-        footer { border-top: 1px solid #1e293b; text-align: center; padding: 30px 20px; color: #64748b; font-size: 13px; }
-        .float-whats { position: fixed; bottom: 20px; right: 20px; background: #10b981; color: #022c22; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); z-index: 100; }
+        .card { background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
+        .card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.12); }
+        .card-icon { width: 48px; height: 48px; background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); color: var(--gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 18px; }
+        .card h3 { font-size: 20px; margin-bottom: 10px; color: var(--white); }
+        .card p { color: var(--gray-muted); font-size: 14px; margin-bottom: 24px; }
+        .btn-card { display: block; text-align: center; background: #1c1c1c; color: var(--white); border: 1px solid #333; font-weight: 700; padding: 11px; border-radius: 6px; font-size: 14px; transition: 0.2s; }
+        .btn-card:hover { background: var(--gold); color: var(--bg-black); border-color: var(--gold); }
+
+        /* Quem Somos */
+        .about-box { background: var(--bg-card); border: 1px solid var(--border-dark); border-left: 4px solid var(--gold); border-radius: 12px; padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: center; }
+        .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .stat-item { background: var(--bg-black); border: 1px solid var(--border-dark); padding: 20px; border-radius: 8px; text-align: center; }
+        .stat-item strong { display: block; font-size: 26px; color: var(--gold); }
+        .stat-item span { font-size: 13px; color: var(--gray-muted); }
+
+        /* Formulário de Contato */
+        .contact-wrapper { max-width: 650px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: 12px; padding: 35px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--gray-light); }
+        .form-control { width: 100%; padding: 12px 14px; background: var(--bg-black); border: 1px solid #333; border-radius: 6px; color: var(--white); font-size: 15px; outline: none; transition: 0.2s; }
+        .form-control:focus { border-color: var(--gold); }
+
+        /* Rodapé */
+        footer { background: #050505; border-top: 1px solid var(--border-dark); padding: 50px 0 30px; font-size: 14px; color: var(--gray-muted); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; margin-bottom: 35px; }
+        .footer-col h4 { color: var(--gold); font-size: 16px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-bottom { border-top: 1px solid #1a1a1a; padding-top: 25px; text-align: center; font-size: 13px; }
+
+        /* Botão WhatsApp Flutuante */
+        .float-whats { position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: var(--bg-black); width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4); z-index: 99; transition: 0.2s; }
+        .float-whats:hover { transform: scale(1.08); background: var(--gold-light); }
+
+        /* Responsividade (Celular) */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 75px; left: 0; width: 100%; background: #0c0c0c; border-bottom: 1px solid var(--gold); padding: 20px; gap: 18px; text-align: center; }
+            .nav-links.active { display: flex; }
+            .hero h1 { font-size: 28px; }
+            .about-box { grid-template-columns: 1fr; padding: 25px; }
+        }
     </style>
 </head>
 <body>
 
+    <!-- CABEÇALHO E MENU HAMBÚRGUER -->
     <header>
-        <div class="container nav-bar">
-            <a href="#" class="logo">NERDVANNA <span class="gradient-text">MIX & TECH</span></a>
-            <a href="https://wa.me/5513999999999?text=Oi!%20Vim%20pelo%20site%20da%20Nerdvanna%20e%20preciso%20de%20atendimento." target="_blank" class="btn-whats-top">
-                💬 Orçamento Rápido
+        <div class="container navbar">
+            <a href="#" class="brand">
+                <!-- Se você subir o arquivo logo.png na mesma pasta, ele aparece automático. Se não tiver, oculta o ícone quebrado e mostra o nome -->
+                <img src="logo.png" alt="Logo Nerdvanna" onerror="this.style.display='none'">
+                <span>NERDVANNA <span class="gold-text">MIX & TECH</span></span>
             </a>
+
+            <button class="hamburger" onclick="toggleMenu()" aria-label="Abrir Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-links" id="navMenu">
+                <a href="#inicio" onclick="toggleMenu()">Início</a>
+                <a href="#servicos" onclick="toggleMenu()">Serviços de TI</a>
+                <a href="#vitrine" onclick="toggleMenu()">Vitrine & Afiliados</a>
+                <a href="#quem-somos" onclick="toggleMenu()">Quem Somos</a>
+                <a href="#contato" class="btn-nav" onclick="toggleMenu()">Solicitar Orçamento</a>
+            </nav>
         </div>
     </header>
 
-    <section class="hero">
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero">
         <div class="container">
-            <span class="badge">Praia Grande & Região | Loja Online</span>
-            <h1>Performance no seu PC e o melhor do <span class="gradient-text">Mundo Geek</span></h1>
-            <p>Manutenção especializada, otimização gamer, curadoria de hardware com desconto, portáteis retrô e colecionáveis selecionados.</p>
+            <span class="badge">Tecnologia, Desenvolvimento & Universo Geek</span>
+            <h1>Soluções Profissionais em TI, <span class="gold-text">Sites, Automação</span> e Produtos Geek</h1>
+            <p>Da manutenção e otimização avançada do seu computador até a criação de sites profissionais, automação de atendimento e curadoria de produtos geek.</p>
             <div class="hero-btns">
-                <a href="#servicos" class="btn-primary">Ver Serviços de TI</a>
-                <a href="#achados" class="btn-secondary">Explorar Vitrine Geek</a>
+                <a href="#servicos" class="btn-gold">Conhecer Serviços</a>
+                <a href="#contato" class="btn-outline">Falar com Especialista</a>
             </div>
         </div>
     </section>
 
+    <!-- SERVIÇOS (6 PILARES) -->
     <section id="servicos">
         <div class="container">
-            <div class="section-title">
-                <h2>Soluções <span style="color:#22d3ee;">Tech & TI</span></h2>
-                <p>Atendimento rápido com diagnóstico preciso para você não perder tempo nem dinheiro.</p>
+            <div class="section-header">
+                <span class="badge">Portfólio Técnico</span>
+                <h2>Nossos <span class="gold-text">Serviços</span></h2>
+                <p>Atendimento especializado para computadores pessoais, gamers e soluções digitais para empresas.</p>
             </div>
 
             <div class="grid-3">
-                <div class="card">
-                    <div>
-                        <div class="card-icon">🚀</div>
-                        <h3>PC Boost & Formatação</h3>
-                        <p>Formatação limpa com backup, instalação de drivers oficiais, limpeza interna, troca de pasta térmica e otimização de sistema para máximo desempenho e FPS.</p>
-                    </div>
-                    <a href="https://wa.me/5513999999999?text=Oi!%20Quero%20um%20orcamento%20para%20PC%20Boost%20/%20Formatacao." target="_blank" class="btn-card">Agendar pelo WhatsApp</a>
-                </div>
-
+                <!-- 1. Manutenção -->
                 <div class="card">
                     <div>
                         <div class="card-icon">🛠️</div>
-                        <h3>Consultoria de Upgrade & Montagem</h3>
-                        <p>Não compre peça errada! Indicamos os links mais baratos para o seu orçamento (SSD NVMe, RAM, Placa de Vídeo) e fazemos a montagem profissional quando chegar.</p>
+                        <h3>Manutenção de Computadores</h3>
+                        <p>Diagnóstico preciso de hardware, limpeza preventiva interna, troca de pasta térmica de alta condutividade, reparo e upgrade de SSD, memória RAM e fontes.</p>
                     </div>
-                    <a href="https://wa.me/5513999999999?text=Oi!%20Quero%20fazer%20um%20upgrade%20ou%20montar%20meu%20PC." target="_blank" class="btn-card">Falar com Especialista</a>
+                    <a href="https://wa.me/5513999999999?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20Manuten%C3%A7%C3%A3o%20de%20Computador." target="_blank" class="btn-card">Solicitar Manutenção</a>
                 </div>
 
+                <!-- 2. Otimização -->
                 <div class="card">
                     <div>
-                        <div class="card-icon">🛡️</div>
-                        <h3>Recuperação de Dados & Suporte</h3>
-                        <p>Análise e recuperação de arquivos apagados em HDs, SSDs e pendrives, além de suporte remoto rápido para remoção de vírus e configuração de programas.</p>
+                        <div class="card-icon">🚀</div>
+                        <h3>Otimização de Sistema & Gamer</h3>
+                        <p>Ajuste fino do Windows para máxima velocidade, remoção de processos ocultos, redução de travamentos e ganho real de desempenho e FPS em jogos e softwares pesados.</p>
                     </div>
-                    <a href="https://wa.me/5513999999999?text=Oi!%20Preciso%20de%20ajuda%20com%20Recuperacao%20de%20Dados%20ou%20Suporte." target="_blank" class="btn-card">Solicitar Atendimento</a>
+                    <a href="https://wa.me/5513999999999?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Otimiza%C3%A7%C3%A3o%20de%20Sistema." target="_blank" class="btn-card">Otimizar meu PC</a>
+                </div>
+
+                <!-- 3. Formatação e Instalação -->
+                <div class="card">
+                    <div>
+                        <div class="card-icon">💿</div>
+                        <h3>Instalação de Programas & Formatação</h3>
+                        <p>Formatação limpa com backup seguro, instalação de Windows original, pacote Office, antivírus, drivers atualizados e softwares técnicos prontos para uso.</p>
+                    </div>
+                    <a href="https://wa.me/5513999999999?text=Ol%C3%A1!%20Preciso%20de%20Formata%C3%A7%C3%A3o%20ou%20Instala%C3%A7%C3%A3o%20de%20Programas." target="_blank" class="btn-card">Agendar Instalação</a>
+                </div>
+
+                <!-- 4. Configuração -->
+                <div class="card">
+                    <div>
+                        <div class="card-icon">⚙️</div>
+                        <h3>Configuração de Equipamentos</h3>
+                        <p>Configuração completa de computadores novos, impressoras, redes Wi-Fi domésticas ou comerciais, periféricos gamer e suporte remoto rápido.</p>
+                    </div>
+                    <a href="https://wa.me/5513999999999?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20com%20Configura%C3%A7%C3%A3o%20de%20Equipamentos." target="_blank" class="btn-card">Solicitar Configuração</a>
+                </div>
+
+                <!-- 5. Criação de Sites -->
+                <div class="card">
+                    <div>
+                        <div class="card-icon">🌐</div>
+                        <h3>Criação de Sites Profissionais</h3>
+                        <p>Desenvolvimento de páginas de vendas (Landing Pages), sites institucionais rápidos, responsivos para celular e integrados diretamente ao seu WhatsApp.</p>
+                    </div>
+                    <a href="https://wa.me/5513999999999?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20para%20Cria%C3%A7%C3%A3o%20de%20Site." target="_blank" class="btn-card">Orçar Meu Site</a>
+                </div>
+
+                <!-- 6. Automação -->
+                <div class="card">
+                    <div>
+                        <div class="card-icon">🤖</div>
+                        <h3>Automação de Atendimento & Processos</h3>
+                        <p>Automatize respostas no WhatsApp e Instagram, captura de clientes, triagem de chamados e fluxos inteligentes para sua empresa vender todos os dias no automático.</p>
+                    </div>
+                    <a href="https://wa.me/5513999999999?text=Ol%C3%A1!%20Quero%20saber%20como%20funciona%20a%20Automa%C3%A7%C3%A3o%20para%20o%20meu%20neg%C3%B3cio." target="_blank" class="btn-card">Automatizar Negócio</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="achados" style="background: #0f172a; border-top: 1px solid #1e293b; border-bottom: 1px solid #1e293b;">
+    <!-- VITRINE DE PRODUTOS E AFILIADOS -->
+    <section id="vitrine" style="background: var(--bg-alt); border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark);">
         <div class="container">
-            <div class="section-title">
-                <span class="badge" style="color:#c084fc; border-color:rgba(192,132,252,0.3); background:rgba(192,132,252,0.1);">Curadoria Oficial Nerdvanna</span>
-                <h2 style="margin-top:10px;">Consoles Retrô, Hardware & Periféricos</h2>
-                <p>Links verificados das melhores ofertas nas lojas oficiais.</p>
+            <div class="section-header">
+                <span class="badge">Loja & Recomendações</span>
+                <h2>Vitrine <span class="gold-text">Geek, Retrô & Hardware</span></h2>
+                <p>Seleção oficial de consoles retrô prontos para jogar, colecionáveis Funko Pop e peças para upgrade com os melhores preços nas lojas parceiras.</p>
             </div>
 
             <div class="grid-4">
                 <div class="card">
                     <div>
                         <span class="badge">Portátil Retrô</span>
-                        <h3 style="margin-top:12px;">Console Portátil R36S / Trimui</h3>
-                        <p>Milhares de clássicos na palma da mão com tela IPS de alta definição. Compra segura.</p>
+                        <h3 style="margin-top:12px;">Consoles Portáteis & Game Sticks</h3>
+                        <p>Jogos clássicos direto na TV ou na palma da mão. Aparelhos novos, prontos para usar e com entrega garantida.</p>
                     </div>
-                    <a href="https://shopee.com.br" target="_blank" class="btn-card btn-afiliado">Ver Oferta na Loja ↗</a>
+                    <a href="#SEU_LINK_AFILIADO_RETRO" target="_blank" class="btn-card">Ver Ofertas na Loja ↗</a>
                 </div>
 
                 <div class="card">
                     <div>
-                        <span class="badge">Plug & Play TV</span>
-                        <h3 style="margin-top:12px;">Game Stick 4K 2 Controles Sem Fio</h3>
-                        <p>Conecte direto no HDMI da TV e jogue clássicos de PS1, Super Nintendo e Arcade.</p>
+                        <span class="badge">Cultura Pop</span>
+                        <h3 style="margin-top:12px;">Funko Pop & Action Figures</h3>
+                        <p>Colecionáveis selecionados de animes, filmes, séries e heróis para decorar seu setup ou presentear.</p>
                     </div>
-                    <a href="https://shopee.com.br" target="_blank" class="btn-card btn-afiliado">Ver Oferta na Loja ↗</a>
+                    <a href="#SEU_LINK_AFILIADO_FUNKO" target="_blank" class="btn-card">Explorar Colecionáveis ↗</a>
                 </div>
 
                 <div class="card">
                     <div>
-                        <span class="badge">Upgrade Essencial</span>
-                        <h3 style="margin-top:12px;">SSD NVMe M.2 Kingston Leitura Rápida</h3>
-                        <p>Deixe o carregamento do Windows e dos seus jogos até 10x mais rápido.</p>
+                        <span class="badge">Alta Performance</span>
+                        <h3 style="margin-top:12px;">SSD NVMe & Memória RAM</h3>
+                        <p>As melhores marcas de armazenamento e memória com desconto para deixar seu PC ou notebook voando.</p>
                     </div>
-                    <a href="https://shopee.com.br" target="_blank" class="btn-card">Ver Oferta na Loja ↗</a>
+                    <a href="#SEU_LINK_AFILIADO_HARDWARE" target="_blank" class="btn-card">Ver Peças em Promoção ↗</a>
                 </div>
 
                 <div class="card">
                     <div>
                         <span class="badge">Setup Gamer</span>
-                        <h3 style="margin-top:12px;">Kit Teclado Mecânico + Mouse RGB</h3>
-                        <p>O melhor custo-benefício testado e aprovado para jogar e trabalhar com precisão.</p>
+                        <h3 style="margin-top:12px;">Teclados, Mouses & Headsets</h3>
+                        <p>Periféricos testados e recomendados com excelente custo-benefício para trabalho e gameplay.</p>
                     </div>
-                    <a href="https://shopee.com.br" target="_blank" class="btn-card">Ver Oferta na Loja ↗</a>
+                    <a href="#SEU_LINK_AFILIADO_SETUP" target="_blank" class="btn-card">Acessar Vitrine Completa ↗</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="colecionaveis">
+    <!-- QUEM SOMOS -->
+    <section id="quem-somos">
         <div class="container">
-            <div class="banner-geek">
-                <div style="max-width: 600px;">
-                    <h3 style="font-size: 22px; margin-bottom: 8px; color: #fff;">Procurando um Funko Pop ou Action Figure específico?</h3>
-                    <p style="color: #cbd5e1; font-size: 14px;">Trabalhamos com busca especializada de colecionáveis originais, kits geek e encomendas sob demanda na Baixada Santista.</p>
+            <div class="about-box">
+                <div>
+                    <span class="badge">Sobre a Empresa</span>
+                    <h2 style="font-size: 30px; margin: 12px 0;">Quem é a <span class="gold-text">Nerdvanna Mix & Tech</span></h2>
+                    <p style="color: var(--gray-light); margin-bottom: 15px;">
+                        A <strong>Nerdvanna Mix & Tech</strong> nasceu da união entre mais de uma década de experiência real em infraestrutura, suporte técnico de TI e desenvolvimento digital com a paixão autêntica pela cultura geek e hardware de performance.
+                    </p>
+                    <p style="color: var(--gray-muted); font-size: 15px;">
+                        Sediada em Praia Grande – SP, nossa missão é oferecer um atendimento transparente, sem termos complicados e focado em resolver o problema do cliente: seja destravando o desempenho máximo do seu computador, criando o site e a automação da sua empresa, ou indicando os melhores produtos do universo nerd.
+                    </p>
                 </div>
-                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                    <a href="https://wa.me/5513999999999?text=Oi!%20Estou%20procurando%20um%20Funko%20Pop%20/%20Colecionavel%20especifico." target="_blank" class="btn-whats-top" style="padding: 12px 20px;">💬 Encomendar / Consultar</a>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <strong>+12 Anos</strong>
+                        <span>Experiência em TI & Suporte</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>100%</strong>
+                        <span>Transparência e Garantia</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Web & IA</strong>
+                        <span>Sites Rápidos e Automação</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Geek & Tech</strong>
+                        <span>Curadoria Especializada</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- FORMULÁRIO DE CONTATO -->
+    <section id="contato" style="background: var(--bg-alt); border-top: 1px solid var(--border-dark);">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Atendimento Rápido</span>
+                <h2>Fale <span class="gold-text">Conosco</span></h2>
+                <p>Preencha os dados abaixo para receber um orçamento personalizado diretamente no seu WhatsApp ou e-mail.</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <form onsubmit="enviarWhatsApp(event)">
+                    <div class="form-group">
+                        <label for="nome">Seu Nome *</label>
+                        <input type="text" id="nome" class="form-control" placeholder="Digite seu nome completo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="servico">Qual serviço ou produto você procura? *</label>
+                        <select id="servico" class="form-control" required>
+                            <option value="Manutenção / Otimização de PC">Manutenção ou Otimização de PC</option>
+                            <option value="Instalação de Programas / Formatação">Instalação de Programas / Formatação</option>
+                            <option value="Configuração de Equipamentos">Configuração de Equipamentos</option>
+                            <option value="Criação de Site Profissional">Criação de Site Profissional</option>
+                            <option value="Automação de Atendimento">Automação de Atendimento / Processos</option>
+                            <option value="Produtos Geek / Encomendas">Produtos Geek / Colecionáveis</option>
+                            <option value="Outros Assuntos">Outros Assuntos</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensagem">Detalhes do que você precisa *</label>
+                        <textarea id="mensagem" rows="4" class="form-control" placeholder="Conte brevemente como podemos ajudar..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-gold" style="width: 100%;">Enviar Solicitação agora</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ COMPLETO -->
     <footer>
-        <p style="color:#cbd5e1; font-weight:bold;">NERDVANNA MIX & TECH</p>
-        <p>Soluções em TI, Manutenção e Artigos Geek — Praia Grande / SP</p>
-        <p style="margin-top:10px;">&copy; 2026 Nerdvanna Mix & Tech. Todos os direitos reservados.</p>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Nerdvanna Mix & Tech</h4>
+                    <p>Soluções inteligentes em Tecnologia da Informação, Manutenção de Computadores, Desenvolvimento Web, Automação e Artigos Geek.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contato & Localização</h4>
+                    <p>📍 Praia Grande - SP (Atendimento Local e Online)</p>
+                    <p>📧 E-mail: <a href="mailto:contato@nerdvanna.com.br" class="gold-text">contato@nerdvanna.com.br</a></p>
+                    <p>📱 WhatsApp: (13) 99999-9999</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Dados Empresariais</h4>
+                    <p>Razão Social / MEI: Roberto Silvestre Pereira</p>
+                    <p><strong>CNPJ:</strong> 00.000.000/0001-00</p>
+                    <p>Atendimento de Segunda a Sábado.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 <strong>Nerdvanna Mix & Tech</strong> - CNPJ: 00.000.000/0001-00. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
 
-    <a href="https://wa.me/5513999999999?text=Oi!%20Vim%20pelo%20site%20da%20Nerdvanna!" target="_blank" class="float-whats" title="Chamar no WhatsApp">💬</a>
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/5513999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Nerdvanna%20Mix%20%26%20Tech." target="_blank" class="float-whats" title="Falar no WhatsApp">💬</a>
+
+    <!-- SCRIPTS (MENU HAMBÚRGUER + ENVIO DO FORMULÁRIO) -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        function enviarWhatsApp(event) {
+            event.preventDefault();
+            const numeroWhats = "5513999999999"; // TROQUE PELO SEU NÚMERO COM DDD
+            const nome = document.getElementById('nome').value;
+            const servico = document.getElementById('servico').value;
+            const mensagem = document.getElementById('mensagem').value;
+
+            const texto = `Olá! Me chamo *${nome}*.\n*Assunto:* ${servico}\n*Mensagem:* ${mensagem}`;
+            const url = `https://wa.me/${numeroWhats}?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank');
+        }
+    </script>
 
 </body>
 </html>

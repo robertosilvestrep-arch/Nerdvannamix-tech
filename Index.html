@@ -1,224 +1,192 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nerdvanna Mix & Tech | TI, Hardware & Universo Geek</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #0b0f19; color: #e2e8f0; }
-        .neon-border:hover { box-shadow: 0 0 15px rgba(6, 182, 212, 0.5); border-color: #06b6d4; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #0b0f19; color: #e2e8f0; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        
+        /* Utilitários e Cores */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         .gradient-text { background: linear-gradient(90deg, #06b6d4, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .badge { display: inline-block; background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); font-size: 12px; font-weight: bold; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; }
+        
+        /* Topo / Navbar */
+        header { position: sticky; top: 0; z-index: 50; background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid #1e293b; padding: 15px 0; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .logo { font-size: 20px; font-weight: 800; letter-spacing: 1px; }
+        .btn-whats-top { background: #10b981; color: #022c22; font-weight: bold; padding: 8px 16px; border-radius: 8px; font-size: 14px; transition: 0.2s; }
+        .btn-whats-top:hover { background: #34d399; }
+
+        /* Hero */
+        .hero { text-align: center; padding: 60px 20px; background: linear-gradient(180deg, #0f172a 0%, #0b0f19 100%); border-bottom: 1px solid #1e293b; }
+        .hero h1 { font-size: 36px; font-weight: 800; margin: 20px 0 15px; line-height: 1.2; }
+        .hero p { color: #94a3b8; font-size: 17px; max-width: 650px; margin: 0 auto 30px; }
+        .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-primary { background: #06b6d4; color: #082f49; font-weight: bold; padding: 12px 28px; border-radius: 10px; }
+        .btn-secondary { background: #1e293b; color: #fff; border: 1px solid #334155; font-weight: 600; padding: 12px 28px; border-radius: 10px; }
+
+        /* Seções e Grids */
+        section { padding: 50px 0; }
+        .section-title { text-align: center; margin-bottom: 35px; }
+        .section-title h2 { font-size: 28px; font-weight: bold; }
+        .section-title p { color: #94a3b8; font-size: 15px; margin-top: 5px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
+
+        /* Cards */
+        .card { background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.2s; }
+        .card:hover { border-color: #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+        .card-icon { font-size: 28px; margin-bottom: 12px; }
+        .card h3 { font-size: 19px; margin-bottom: 10px; color: #f8fafc; }
+        .card p { color: #94a3b8; font-size: 14px; margin-bottom: 20px; }
+        .btn-card { display: block; text-align: center; background: #1e293b; color: #e2e8f0; font-weight: bold; padding: 10px; border-radius: 8px; font-size: 14px; transition: 0.2s; }
+        .btn-card:hover { background: #06b6d4; color: #082f49; }
+        .btn-afiliado { background: #7e22ce; color: #fff; }
+        .btn-afiliado:hover { background: #9333ea; color: #fff; }
+
+        /* Banner Colecionáveis */
+        .banner-geek { background: linear-gradient(90deg, #0f172a, #2e1065, #0f172a); border: 1px solid #4c1d95; border-radius: 16px; padding: 30px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
+        
+        /* Rodapé e Botão Flutuante */
+        footer { border-top: 1px solid #1e293b; text-align: center; padding: 30px 20px; color: #64748b; font-size: 13px; }
+        .float-whats { position: fixed; bottom: 20px; right: 20px; background: #10b981; color: #022c22; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); z-index: 100; }
     </style>
 </head>
-<body class="font-sans antialiased">
+<body>
 
-    <!-- Navbar -->
-    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-extrabold tracking-wider">
-                NERDVANNA <span class="gradient-text">MIX & TECH</span>
-            </a>
-            <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-300">
-                <a href="#servicos" class="hover:text-cyan-400 transition">Serviços Tech</a>
-                <a href="#achados" class="hover:text-purple-400 transition">Achados & Retro</a>
-                <a href="#colecionaveis" class="hover:text-cyan-400 transition">Colecionáveis</a>
-            </nav>
-            <a href="https://wa.me/5513992014692?text=Oi!%20Vim%20pelo%20site%20da%20Nerdvanna%20e%20preciso%20de%20atendimento." target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2 px-4 rounded-lg text-sm flex items-center gap-2 transition">
-                <i class="fa-brands fa-whatsapp text-lg"></i> Orçamento Rápido
+    <header>
+        <div class="container nav-bar">
+            <a href="#" class="logo">NERDVANNA <span class="gradient-text">MIX & TECH</span></a>
+            <a href="https://wa.me/5513999999999?text=Oi!%20Vim%20pelo%20site%20da%20Nerdvanna%20e%20preciso%20de%20atendimento." target="_blank" class="btn-whats-top">
+                💬 Orçamento Rápido
             </a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative py-20 px-4 text-center border-b border-slate-800 bg-gradient-to-b from-slate-900 to-[#0b0f19]">
-        <div class="max-w-3xl mx-auto">
-            <span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
-                Praia Grande & Região | Loja Online
-            </span>
-            <h1 class="text-4xl md:text-6xl font-extrabold mt-6 leading-tight">
-                Performance no seu PC e o melhor do <span class="gradient-text">Mundo Geek</span>
-            </h1>
-            <p class="mt-4 text-lg text-slate-400">
-                Manutenção especializada, otimização gamer, curadoria de hardware com desconto, portáteis retrô e colecionáveis selecionados.
-            </p>
-            <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#servicos" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 px-8 rounded-xl transition">
-                    Ver Serviços de TI
-                </a>
-                <a href="#achados" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold py-3 px-8 rounded-xl transition">
-                    Explorar Vitrine Geek
-                </a>
+    <section class="hero">
+        <div class="container">
+            <span class="badge">Praia Grande & Região | Loja Online</span>
+            <h1>Performance no seu PC e o melhor do <span class="gradient-text">Mundo Geek</span></h1>
+            <p>Manutenção especializada, otimização gamer, curadoria de hardware com desconto, portáteis retrô e colecionáveis selecionados.</p>
+            <div class="hero-btns">
+                <a href="#servicos" class="btn-primary">Ver Serviços de TI</a>
+                <a href="#achados" class="btn-secondary">Explorar Vitrine Geek</a>
             </div>
         </div>
     </section>
 
-    <!-- Bloco 1: Serviços Tech (Mão de obra limpa e lucro 100%) -->
-    <section id="servicos" class="py-16 px-4 max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold">Soluções <span class="text-cyan-400">Tech & TI</span></h2>
-            <p class="text-slate-400 mt-2">Atendimento rápido com diagnóstico preciso para você não perder tempo nem dinheiro.</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6">
-            <!-- Card 1 -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 neon-border transition flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-cyan-500/10 text-cyan-400 rounded-xl flex items-center justify-center text-2xl mb-4">
-                        <i class="fa-solid fa-gauge-high"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">PC Boost & Formatação</h3>
-                    <p class="text-slate-400 text-sm mb-6">
-                        Formatação limpa com backup, instalação de drivers oficiais, limpeza interna, troca de pasta térmica e otimização de sistema para máximo desempenho e FPS.
-                    </p>
-                </div>
-                <a href="https://wa.me/5513992014692?text=Oi!%20Quero%20um%20orcamento%20para%20PC%20Boost%20/%20Formatacao." target="_blank" class="w-full text-center bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 font-bold py-3 rounded-xl transition">
-                    Agendar pelo WhatsApp
-                </a>
+    <section id="servicos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Soluções <span style="color:#22d3ee;">Tech & TI</span></h2>
+                <p>Atendimento rápido com diagnóstico preciso para você não perder tempo nem dinheiro.</p>
             </div>
 
-            <!-- Card 2 -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 neon-border transition flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center text-2xl mb-4">
-                        <i class="fa-solid fa-microchip"></i>
+            <div class="grid-3">
+                <div class="card">
+                    <div>
+                        <div class="card-icon">🚀</div>
+                        <h3>PC Boost & Formatação</h3>
+                        <p>Formatação limpa com backup, instalação de drivers oficiais, limpeza interna, troca de pasta térmica e otimização de sistema para máximo desempenho e FPS.</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Consultoria de Upgrade & Montagem</h3>
-                    <p class="text-slate-400 text-sm mb-6">
-                        Não compre peça errada! Indicamos os links mais baratos para o seu orçamento (SSD NVMe, RAM, Placa de Vídeo) e fazemos a montagem profissional quando chegar.
-                    </p>
-                </div>
-                <a href="https://wa.me/5513999999999?text=Oi!%20Quero%20fazer%20um%20upgrade%20ou%20montar%20meu%20PC." target="_blank" class="w-full text-center bg-slate-800 hover:bg-purple-500 hover:text-slate-950 font-bold py-3 rounded-xl transition">
-                    Falar com Especialista
-                </a>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 neon-border transition flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center text-2xl mb-4">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Recuperação de Dados & Suporte</h3>
-                    <p class="text-slate-400 text-sm mb-6">
-                        Análise e recuperação de arquivos apagados em HDs, SSDs e pendrives, além de suporte remoto rápido para remoção de vírus e configuração de programas.
-                    </p>
-                </div>
-                <a href="https://wa.me/5513999999999?text=Oi!%20Preciso%20de%20ajuda%20com%20Recuperacao%20de%20Dados%20ou%20Suporte." target="_blank" class="w-full text-center bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 font-bold py-3 rounded-xl transition">
-                    Solicitar Atendimento
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bloco 2: Vitrine de Afiliados (Retro Games, Hardware & Setup) -->
-    <section id="achados" class="py-16 px-4 bg-slate-900/50 border-y border-slate-800">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-10">
-                <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-purple-400">Curadoria Oficial Nerdvanna</span>
-                    <h2 class="text-3xl font-bold mt-1">Consoles Retrô, Hardware & Periféricos</h2>
-                </div>
-                <p class="text-slate-400 text-sm mt-2 md:mt-0">Links verificados das melhores ofertas nas lojas oficiais.</p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Produto Afiliado 1 -->
-                <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between neon-border transition">
-                    <div class="p-4">
-                        <span class="bg-purple-500/20 text-purple-300 text-xs px-2 py-1 rounded font-semibold">Portátil Retrô</span>
-                        <h3 class="font-bold text-lg mt-3">Console Portátil R36S / Trimui</h3>
-                        <p class="text-slate-400 text-xs mt-2">Milhares de clássicos na palma da mão com tela IPS de alta definição. Compra segura.</p>
-                    </div>
-                    <div class="p-4 pt-0">
-                        <a href="#LINK_AFILIADO_1" target="_blank" class="block w-full text-center bg-purple-600 hover:bg-purple-500 text-white font-bold py-2.5 rounded-lg text-sm transition">
-                            Ver Oferta na Loja <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
-                        </a>
-                    </div>
+                    <a href="https://wa.me/5513999999999?text=Oi!%20Quero%20um%20orcamento%20para%20PC%20Boost%20/%20Formatacao." target="_blank" class="btn-card">Agendar pelo WhatsApp</a>
                 </div>
 
-                <!-- Produto Afiliado 2 -->
-                <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between neon-border transition">
-                    <div class="p-4">
-                        <span class="bg-purple-500/20 text-purple-300 text-xs px-2 py-1 rounded font-semibold">Plug & Play TV</span>
-                        <h3 class="font-bold text-lg mt-3">Game Stick 4K 2 Controles Sem Fio</h3>
-                        <p class="text-slate-400 text-xs mt-2">Conecte direto no HDMI da TV e jogue clássicos de PS1, Super Nintendo e Arcade.</p>
+                <div class="card">
+                    <div>
+                        <div class="card-icon">🛠️</div>
+                        <h3>Consultoria de Upgrade & Montagem</h3>
+                        <p>Não compre peça errada! Indicamos os links mais baratos para o seu orçamento (SSD NVMe, RAM, Placa de Vídeo) e fazemos a montagem profissional quando chegar.</p>
                     </div>
-                    <div class="p-4 pt-0">
-                        <a href="#LINK_AFILIADO_2" target="_blank" class="block w-full text-center bg-purple-600 hover:bg-purple-500 text-white font-bold py-2.5 rounded-lg text-sm transition">
-                            Ver Oferta na Loja <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
-                        </a>
-                    </div>
+                    <a href="https://wa.me/5513999999999?text=Oi!%20Quero%20fazer%20um%20upgrade%20ou%20montar%20meu%20PC." target="_blank" class="btn-card">Falar com Especialista</a>
                 </div>
 
-                <!-- Produto Afiliado 3 -->
-                <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between neon-border transition">
-                    <div class="p-4">
-                        <span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded font-semibold">Upgrade Essencial</span>
-                        <h3 class="font-bold text-lg mt-3">SSD NVMe M.2 Kingston / Leitura Rápida</h3>
-                        <p class="text-slate-400 text-xs mt-2">Deixe o carregamento do Windows e dos seus jogos até 10x mais rápido.</p>
+                <div class="card">
+                    <div>
+                        <div class="card-icon">🛡️</div>
+                        <h3>Recuperação de Dados & Suporte</h3>
+                        <p>Análise e recuperação de arquivos apagados em HDs, SSDs e pendrives, além de suporte remoto rápido para remoção de vírus e configuração de programas.</p>
                     </div>
-                    <div class="p-4 pt-0">
-                        <a href="#LINK_AFILIADO_3" target="_blank" class="block w-full text-center bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2.5 rounded-lg text-sm transition">
-                            Ver Oferta na Loja <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Produto Afiliado 4 -->
-                <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between neon-border transition">
-                    <div class="p-4">
-                        <span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded font-semibold">Setup Gamer</span>
-                        <h3 class="font-bold text-lg mt-3">Kit Teclado Mecânico + Mouse Gamer RGB</h3>
-                        <p class="text-slate-400 text-xs mt-2">O melhor custo-benefício testado e aprovado para jogar e trabalhar com precisão.</p>
-                    </div>
-                    <div class="p-4 pt-0">
-                        <a href="#LINK_AFILIADO_4" target="_blank" class="block w-full text-center bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2.5 rounded-lg text-sm transition">
-                            Ver Oferta na Loja <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
-                        </a>
-                    </div>
+                    <a href="https://wa.me/5513999999999?text=Oi!%20Preciso%20de%20ajuda%20com%20Recuperacao%20de%20Dados%20ou%20Suporte." target="_blank" class="btn-card">Solicitar Atendimento</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Bloco 3: Colecionáveis & Funko Pop (Afiliados + Sob Encomenda) -->
-    <section id="colecionaveis" class="py-16 px-4 max-w-6xl mx-auto">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-bold">Colecionáveis & <span class="text-purple-400">Cultura Pop</span></h2>
-            <p class="text-slate-400 mt-2">Funko Pops, Action Figures e itens exclusivos por curadoria ou encomenda.</p>
-        </div>
-
-        <div class="bg-gradient-to-r from-slate-900 via-purple-950/30 to-slate-900 border border-slate-800 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="max-w-xl">
-                <h3 class="text-2xl font-bold mb-2">Procurando um Funko Pop ou Action Figure específico?</h3>
-                <p class="text-slate-400 text-sm">
-                    Trabalhamos com busca especializada de colecionáveis originais, kits geek e encomendas sob demanda na região da Baixada Santista, além de lista VIP de promoções.
-                </p>
+    <section id="achados" style="background: #0f172a; border-top: 1px solid #1e293b; border-bottom: 1px solid #1e293b;">
+        <div class="container">
+            <div class="section-title">
+                <span class="badge" style="color:#c084fc; border-color:rgba(192,132,252,0.3); background:rgba(192,132,252,0.1);">Curadoria Oficial Nerdvanna</span>
+                <h2 style="margin-top:10px;">Consoles Retrô, Hardware & Periféricos</h2>
+                <p>Links verificados das melhores ofertas nas lojas oficiais.</p>
             </div>
-            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                <a href="https://wa.me/5513999999999?text=Oi!%20Estou%20procurando%20um%20Funko%20Pop%20/%20Colecionavel%20especifico." target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-3 px-6 rounded-xl text-center whitespace-nowrap transition">
-                    <i class="fa-brands fa-whatsapp mr-1"></i> Encomendar / Consultar
-                </a>
-                <a href="#LINK_VITRINE_SHOPEE" target="_blank" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold py-3 px-6 rounded-xl text-center whitespace-nowrap transition">
-                    Ver Vitrine Completa
-                </a>
+
+            <div class="grid-4">
+                <div class="card">
+                    <div>
+                        <span class="badge">Portátil Retrô</span>
+                        <h3 style="margin-top:12px;">Console Portátil R36S / Trimui</h3>
+                        <p>Milhares de clássicos na palma da mão com tela IPS de alta definição. Compra segura.</p>
+                    </div>
+                    <a href="https://shopee.com.br" target="_blank" class="btn-card btn-afiliado">Ver Oferta na Loja ↗</a>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <span class="badge">Plug & Play TV</span>
+                        <h3 style="margin-top:12px;">Game Stick 4K 2 Controles Sem Fio</h3>
+                        <p>Conecte direto no HDMI da TV e jogue clássicos de PS1, Super Nintendo e Arcade.</p>
+                    </div>
+                    <a href="https://shopee.com.br" target="_blank" class="btn-card btn-afiliado">Ver Oferta na Loja ↗</a>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <span class="badge">Upgrade Essencial</span>
+                        <h3 style="margin-top:12px;">SSD NVMe M.2 Kingston Leitura Rápida</h3>
+                        <p>Deixe o carregamento do Windows e dos seus jogos até 10x mais rápido.</p>
+                    </div>
+                    <a href="https://shopee.com.br" target="_blank" class="btn-card">Ver Oferta na Loja ↗</a>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <span class="badge">Setup Gamer</span>
+                        <h3 style="margin-top:12px;">Kit Teclado Mecânico + Mouse RGB</h3>
+                        <p>O melhor custo-benefício testado e aprovado para jogar e trabalhar com precisão.</p>
+                    </div>
+                    <a href="https://shopee.com.br" target="_blank" class="btn-card">Ver Oferta na Loja ↗</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Rodapé -->
-    <footer class="border-t border-slate-800 py-8 px-4 text-center text-slate-500 text-sm">
-        <p class="font-bold text-slate-300">NERDVANNA MIX & TECH</p>
-        <p class="mt-1">Soluções em TI, Manutenção e Artigos Geek — Praia Grande / SP</p>
-        <p class="mt-4 text-xs">&copy; 2026 Nerdvanna Mix & Tech. Todos os direitos reservados.</p>
+    <section id="colecionaveis">
+        <div class="container">
+            <div class="banner-geek">
+                <div style="max-width: 600px;">
+                    <h3 style="font-size: 22px; margin-bottom: 8px; color: #fff;">Procurando um Funko Pop ou Action Figure específico?</h3>
+                    <p style="color: #cbd5e1; font-size: 14px;">Trabalhamos com busca especializada de colecionáveis originais, kits geek e encomendas sob demanda na Baixada Santista.</p>
+                </div>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="https://wa.me/5513999999999?text=Oi!%20Estou%20procurando%20um%20Funko%20Pop%20/%20Colecionavel%20especifico." target="_blank" class="btn-whats-top" style="padding: 12px 20px;">💬 Encomendar / Consultar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p style="color:#cbd5e1; font-weight:bold;">NERDVANNA MIX & TECH</p>
+        <p>Soluções em TI, Manutenção e Artigos Geek — Praia Grande / SP</p>
+        <p style="margin-top:10px;">&copy; 2026 Nerdvanna Mix & Tech. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Botão Flutuante do WhatsApp -->
-    <a href="https://wa.me/5513999999999?text=Oi!%20Vim%20pelo%20site%20da%20Nerdvanna!" target="_blank" class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-400 text-slate-950 w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg shadow-emerald-500/30 transition transform hover:scale-110 z-50">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/5513999999999?text=Oi!%20Vim%20pelo%20site%20da%20Nerdvanna!" target="_blank" class="float-whats" title="Chamar no WhatsApp">💬</a>
 
 </body>
 </html>
